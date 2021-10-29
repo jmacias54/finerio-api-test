@@ -1,21 +1,24 @@
 package com.finerio.api.helper;
 
 
-import com.finerio.api.exception.ServiceException;
-import com.finerio.api.model.Movement;
-import com.finerio.api.model.User;
-import com.finerio.api.model.out.MovementOut;
-import com.finerio.api.util.Constants;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
+import com.finerio.api.exception.ServiceException;
+import com.finerio.api.model.User;
+import com.finerio.api.model.out.MovementOut;
+import com.finerio.api.util.Constants;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
@@ -53,10 +56,7 @@ public class CallFinerioWS {
 
     public MovementOut getMovements(String token,String idUser,int offset) {
         log.debug(" --- getMovements ----");
-        List<Movement> list = null;
         MovementOut movements = null ;
-
-
         try {
 
             HttpHeaders headers = new HttpHeaders();
