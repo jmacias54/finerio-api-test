@@ -1,6 +1,8 @@
 package com.finerio.api.controller;
 
+import com.finerio.api.model.out.LoginOut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +20,19 @@ public class FinerioController {
 	@Autowired private FinerioService finerioService;
 
 	@PostMapping("/login")
-	public UserOut login(@RequestBody UserIn in) {
+	public LoginOut login(@RequestBody UserIn in) {
 		log.info("--- login --- ", in);
 
-		UserOut out = finerioService.login(in);		
+		LoginOut out = finerioService.login(in);
+		return out;
+
+	}
+
+	@GetMapping("/runTest")
+	public LoginOut runTest(@RequestBody UserIn in) {
+		log.info("--- runTest --- ", in);
+
+		LoginOut out = finerioService.login(in);
 		return out;
 
 	}
